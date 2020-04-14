@@ -1,0 +1,298 @@
+body{
+	margin:0;
+	padding:0;
+	background-color:#cccccc;
+}
+#mapbox{
+	position:relative;
+	float:left;
+}
+#mapback{
+
+	left:0;
+	top:0;
+	height:98vh;
+}
+
+.mappart{
+	position:absolute;
+	left:0;
+	top:0;
+	height:98vh;	
+}
+
+.mapbtn{
+	
+	position:absolute;
+	height:5%;
+	width:20%;
+	font-size:1.5vh;
+	border-radius:7px;
+	border:solid 2px #ffffff;
+	background-color:#777777;
+	color:#ffffff;
+	transition-duration:0.5s;
+}
+
+.mapbtn:hover{
+	background-color:#000000;
+}
+
+.sMapBtnRed{
+	position:absolute;
+	width:5%;
+	font-size:3vh;
+	border-radius:7px 0 0 7px;
+	border:none;
+	background-color:#ffffff;
+	color:#990000;
+	transition-duration:0.5s;
+}
+.sMapBtnRed:hover{
+	color:#ff0000;
+}
+
+.sMapBtnBlue{
+	position:absolute;
+	width:5%;
+	font-size:3vh;
+	border:none;
+	background-color:#ffffff;
+	color:#000099;
+	transition-duration:0.5s;
+}
+.sMapBtnBlue:hover{
+	color:#0000ff;
+}
+
+.sMapBtnGreen{
+	position:absolute;
+	width:5%;
+	font-size:3vh;
+	border:none;
+	background-color:#ffffff;
+	color:#009900;
+	transition-duration:0.5s;
+}
+.sMapBtnGreen:hover{
+	color:#00ff00;
+}
+
+.sMapBtnYellow{
+	position:absolute;
+	width:5%;
+	font-size:3vh;
+	border-radius:0 7px 7px 0;
+	border:none;
+	background-color:#ffffff;
+	color:#aaaa00;
+	transition-duration:0.5s;
+}
+.sMapBtnYellow:hover{
+	color:#ffff00;
+}
+
+.troubleBtn{
+	position:absolute;
+	width:5%;
+	height:4%;
+	border:none;
+	border-radius:7px;
+	background-color:#00000000;
+	background-image:url(pics/neprGrey.png);
+	background-size:100%;
+	color:#aaaa00;
+	transition-duration:0.5s;
+}
+.troubleBtn:hover{
+	border:solid 2px #ffffff;
+}
+
+.houseBtn{
+	position:absolute;
+	width:5%;
+	height:4%;
+	border:none;
+	border-radius:7px;
+	background-color:#00000000;
+	background-image:url(pics/houseGrey.png);
+	background-size:100%;
+	color:#aaaa00;
+	transition-duration:0.5s;
+}
+.houseBtn:hover{
+	border:solid 2px #ffffff;
+}
+
+.demonBtn{
+	position:absolute;
+	width:5%;
+	height:4%;
+	border:none;
+	border-radius:7px;
+	background-color:#00000000;
+	background-image:url(pics/demonGrey.png);
+	background-size:100%;
+	color:#aaaa00;
+	transition-duration:0.5s;
+}
+.demonBtn:hover{
+	border:solid 2px #ffffff;
+}
+
+.trollBtn{
+	position:absolute;
+	width:5%;
+	height:4%;
+	border:none;
+	border-radius:7px;
+	background-color:#00000000;
+	background-image:url(pics/trollGrey.png);
+	background-size:100%;
+	color:#aaaa00;
+	transition-duration:0.5s;
+}
+.trollBtn:hover{
+	border:solid 2px #ffffff;
+}
+
+#main{
+	height:98vh;
+	width:5vw;
+	position:relative;
+	float:right;
+}
+
+#actionbox{
+	margin:0 auto;
+	width:95%;
+	height:70%;
+}
+
+#chatbox{
+	background-color:#ffffff;
+	border-radius:10px 10px 0 0;
+	margin:0 auto;
+	width:90%;
+	height:20%;
+	overflow-y:hidden;
+}
+
+.chatmsg{
+	text-align:justify;
+	color:#444444;
+	width:80%;
+	margin:0 auto;
+	padding: 0 5;
+}
+.chatmsg:hover{
+	color:#000000;
+}
+
+.chatchatname{
+	color:#000000;
+	border:none;
+	font-weight:900;
+	background-color:#00000000;
+}
+
+#chatbar{
+	padding:0;
+	margin:0 auto;
+	width:90%;
+	height:6%;
+}
+
+#chatinput{
+	display:inline;
+	border-radius:0 0 0 10px;
+	border:none;
+	margin:0;
+	padding:0;
+	width:80%;
+	height:100%;
+}
+
+#chatbutton{
+	display:inline;
+	border-radius:0 0 10px 0;
+	border:none;
+	margin:0;
+	padding:0;
+	width:20%;
+	height:100%;	
+}
+
+.inpt{
+	border: solid 2px #777777;
+	padding:5px;
+	border-radius:10px;
+}
+
+.inpt:hover{
+	border: solid 4px #aaaaaa;
+}
+
+#logoutBtn{
+	position:fixed;
+	top:.5vw;
+	width:2.5vw;
+	height:2.5vw;
+	left:97vw;
+	border:none;
+	background-color:#00000000;
+	background-image:url('pics/logoutW.png');
+	background-size:100%;
+}
+
+#logoutBtn:hover{
+	background-image:url('pics/logoutR.png');
+}
+
+#fullScreenDialogue{
+	display:none;
+	position:fixed;
+	height:100vh;
+	width:100vw;
+	background-color:#000000cc;
+}
+
+#fSDialogueFrame{
+	position:fixed;
+	height:40vh;
+	width:40vw;
+	top:30vh;
+	left:30vw;
+	border: solid 2px #00aa00;
+	border-radius:10px;
+	background-color:#ffffff;
+}
+
+#fSDlgCaption{
+	position:absolute;
+	top:25%;
+	width:100%;
+	font-weight:800;
+	font-size:20;
+	text-align:center;
+	height:80%;
+}
+
+.fSDlgBtn{
+	position:relative;
+	width:45%;
+	height:20%;
+	top:75%;
+	border: solid 2px #777777;
+	padding:5px;
+	border-radius:10px;
+}
+.fSDlgBtn:hover{
+	border: solid 4px #aaaaaa;
+}
+.chatLeftMsg{
+	color:#cc0000;
+}
+.chatEnterMsg{
+	color:#00cc00;
+}
