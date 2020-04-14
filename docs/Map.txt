@@ -1,0 +1,40 @@
+-----------------------------------------------------------------------------------------------------------
+				Map values supposed to be exchanged with server part
+-----------------------------------------------------------------------------------------------------------	
+	for each district:			
+		
+		redC 		number		quantity of red servants;
+		blueC		number		quantity of blue servants;
+		greenC		number		quantity of green servants;
+		yellowC		number		quantity of yellow servants;
+		trollC		number		quantity of trolls servants;
+		demonC		number		quantity of demons servants;
+		house		string		color of house (grey,red,blue,green,yellow);
+		trouble		boolean		if district contain trouble chip (false,true).
+
+-----------------------------------------------------------------------------------------------------------
+				Map API (for testing with console or something)
+-----------------------------------------------------------------------------------------------------------
+MAP.setAvaliability(dists);
+		Sets districts that IDs sent as paramets avaliable and disables the rest.
+	Parametrs:	
+		dists (array of numbers 1-12) IDs of districts must be set as avaliable.
+		
+MAP.displayAvaliability(player,action)
+		Sets all districts avaliable or not for exact player and action.
+	Parametrs:
+		player (string) player "red","blue","green" or "yellow";
+		action (string) not special action that is to be undertaken "build", "add", "kill".
+		
+MAP.add(dist,unit)
+		adds unit(unit) to the district(dist)
+	Paramets
+		dist (number) IDs of district where unit will be placed;
+		unit (string) type of unit "troll","demon","red","blue","green" or "yellow"
+		
+MAP.kill(dist,unit)		
+		kills unit(unit) in the district(dist)
+	Paramets
+		dist (number) IDs of district where unit will be placed;
+		unit (string) type of unit "troll","demon","red","blue","green" or "yellow"
+		
