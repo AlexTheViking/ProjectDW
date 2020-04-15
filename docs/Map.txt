@@ -7,8 +7,8 @@
 		blueC		number		quantity of blue servants;
 		greenC		number		quantity of green servants;
 		yellowC		number		quantity of yellow servants;
-		trollC		number		quantity of trolls servants;
-		demonC		number		quantity of demons servants;
+		trollC		number		quantity of trolls;
+		demonC		number		quantity of demons;
 		house		string		color of house (grey,red,blue,green,yellow);
 		trouble		boolean		if district contain trouble chip (false,true).
 
@@ -29,12 +29,17 @@ MAP.displayAvaliability(player,action)
 MAP.add(dist,unit)
 		adds unit(unit) to the district(dist)
 	Paramets
-		dist (number) IDs of district where unit will be placed;
+		dist (number) ID of district where unit will be placed;
 		unit (string) type of unit "troll","demon","red","blue","green" or "yellow"
 		
 MAP.kill(dist,unit)		
 		kills unit(unit) in the district(dist)
 	Paramets
-		dist (number) IDs of district where unit will be placed;
+		dist (number) ID of district where unit will be killed;
 		unit (string) type of unit "troll","demon","red","blue","green" or "yellow"
-		
+
+MAP.build(dist,player)		
+		Set player`s building in the district(dist)
+	Paramets
+		dist 	(number) ID of district where building will be build;
+		player 	(string) player's color "red","blue","green" or "yellow"		

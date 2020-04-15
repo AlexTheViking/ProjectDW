@@ -15,11 +15,11 @@ function District (id){
 	this.demonC=0;
 	this.house=null;
 	this.map=$('#map'+id);
-	this.mapBtn=$('#mapbtn'+id);
-	this.mapBtnRed=$('#sMapBtnRed'+id);
-	this.mapBtnBlue=$('#sMapBtnBlue'+id);
-	this.mapBtnGreen=$('#sMapBtnGreen'+id);
-	this.mapBtnYellow=$('#sMapBtnYellow'+id);
+//	this.mapBtn=$('#mapbtn'+id);
+	this.redBtn=$('#sMapBtnRed'+id);
+	this.blueBtn=$('#sMapBtnBlue'+id);
+	this.greenBtn=$('#sMapBtnGreen'+id);
+	this.yellowBtn=$('#sMapBtnYellow'+id);
 	this.troubleBtn=$('#troubleBtn'+id);
 	this.houseBtn=$('#houseBtn'+id);
 	this.demonBtn=$('#demonBtn'+id);
@@ -43,14 +43,18 @@ function District (id){
 		};
 		
 	this.setTroubles=function(bool){
-		if(bool){this.isTroublesHere=true;this.troubleBtn.css('backgroundImage','url("pics/neprBlack.png")')}
-		else{this.isTroublesHere=false; this.troubleBtn.css('backgroundImage','url("pics/neprGrey.png")')};
+		if(bool){this.isTroublesHere=true;this.troubleBtn.css('display','block')}
+		else{this.isTroublesHere=false; this.troubleBtn.css('display','none')};
 		};
 	this.checkTroubles=function(){return this.isTroublesHere};	
 		
 	this.setBuilding=function(color){
+		if(color!=null){
 		this.building=color;
 		this.houseBtn.css('backgroundImage','url("pics/house'+color+'.png")');
+		this.houseBtn.css('display','block');}
+		else(this.houseBtn.css('display','none'))
+		
 		};
 	
 	//for the same structure, push<Smth> for no-logic adding and add<Smth> to use game rules
@@ -58,34 +62,22 @@ function District (id){
 
 
 	this.push=function(who){
-		if(who=='demon'||who=='troll'){
+		
 			this[who+'C']++;
 			if(this[who+'C']>0){
-				this[who+'Btn'].css('backgroundImage','url("pics/'+who+'Red.png")');
+				this[who+'Btn'].css('display','block');
 				if(this[who+'C']>1){this[who+'Btn'].html(this[who+'C'])}
-				}}
-		else{
-			this[who.toLowerCase()+'C']++;
-			this['mapBtn'+who[0].toUpperCase()+who.slice(1)].html(this[who.toLowerCase()+'C']);
-		}		
+				}
 	};
 		
 	this.delete=function(who){
-		if(who=='demon'||who=='troll'){
 			this[who+'C']--;
 			if(this[who+'C']<2){
 				this[who+'Btn'].html('');
 				if(this[who+'C']<1){
-					if(this[who+'C']<1){this[who+'C']=0; console.warn('there is no this kind of unit to delete, something went wrong!')}
-					this[who+'Btn'].css('backgroundImage','url("pics/'+who+'Grey.png")')}}
-				else{this[who+'Btn'].html(this[who+'C'])}}
-		else{
-			this[who.toLowerCase()+'C']--; 
-			if(this[who.toLowerCase()+'C']<0){
-				this[who.toLowerCase()+'C']=0; console.warn('there is no this kind of unit to delete, something went wrong!')
-			}
-			this['mapBtn'+who[0].toUpperCase()+who.slice(1)].html(this[who.toLowerCase()+'C']);
-		}		
+					if(this[who+'C']<0){this[who+'C']=0; console.warn('there is no unit of this kind to delete, something went wrong!')}
+					this[who+'Btn'].css('display','none')}}
+				else{this[who+'Btn'].html(this[who+'C'])}
 	};	
 	
 };
@@ -149,5 +141,45 @@ MAP={
 		this.districts[dist-1].delete(unit);
 		this.districts[dist-1].setTroubles(false);
 	},
+	
+	build:function(dist,player){
+		if(player==null){this.districts[dist-1].setBuilding(null);return 'removed'};
+		this.districts[dist-1].setBuilding(player);
+	},
+	
+	
+	distHover:function(id){
+		//console.log('hovered district # '+id);
+		$('#path'+id).attr('style','fill:#ffffff44;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1,0.5');
+	},	
+	distLeft:function(id){
+		//console.log('district # '+id+' left');
+		$('#path'+id).attr('style','fill:#00000000;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;');
+	},
 
+	bindButtons:function(){
+		this.districts.forEach(function(item,i){
+			item.redBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.redBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.blueBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.blueBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.greenBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.greenBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.yellowBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.yellowBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.troubleBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.troubleBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.houseBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.houseBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.demonBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.demonBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			item.trollBtn.mouseenter(function(){MAP.distHover(i+1)});
+			item.trollBtn.mouseleave(function(){MAP.distLeft(i+1)});
+			
+			$('#svg8').css('display','block');
+
+		});
+	},
 };
+
+

@@ -5,7 +5,7 @@ $(function(){
 Resizer.resizeMain();
 //resizes right part of interface to make it take all the place that left after map css resizing 
 
-//Не удалять!! запрос к пхп
+//		Не удалять!! запрос к пхп!!!
 /*
 $.post('php/login_check.php',function(data){
 //sends post-request to find out weather user is loged in or not
@@ -21,8 +21,10 @@ $.post('php/login_check.php',function(data){
 });
 */
 
-
 MAP.getDistricts();
+//creates jquery objects from districts images and saves them into MAP object
+MAP.bindButtons();
+//assigns buttons with districts
 
 });
 
