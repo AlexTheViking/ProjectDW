@@ -1,24 +1,121 @@
 
 CHAT={
-	isBig:false,
-	nameClicked:false,
+
+display:'popping',
+//popping, shown and fixed
+
+logMsgOn:true,
+chtMsgOn:true,
+
+getLogMsgOn:function(){return this.logMsgOn},
+setLogMsgOn:function(bool){this.logMsgOn=bool},
+getChtMsgOn:function(){return this.chtMsgOn},
+setChtMsgOn:function(bool){this.chtMsgOn=bool},
+
+allmessages:[],
+
+lifetime:5,
+
+pattern:'<div class="onScreenMsg#TYPE"><img class="onScreenMsgImg" src="pics/#IMGSay.png"><div class="onScreenMsgTxt"> #TEXT </div></div>',
+
+getDisplay:function(){return this.display},
+setDisplay:function(mode){this.display=mode},
+
+push:function(user,text){
+	type='';
+	if(user=='system'){type='SYS'}else{type='CHT'}
+	content=this.pattern.split('#TEXT').join(text).split('#IMG').join(user).split('#TYPE').join(type);
+	this.allmessages.push(content);
 	
-	checkIfName:function(){
-	    return this.nameClicked;
-	},
+	if(this.display=='popping'){
+		$('#chatbox').append(content);
+		setTimeout(function(){$('#chatbox').children().first().remove()},CHAT.lifetime*1000)}
+	else{$('#logmsgbox').append(content);};
+		
+	if(this.display=='shown'){$('#logbox').scrollTop($('#logmsgbox').height());};
+
+
+	if(!CHAT.getChtMsgOn()){$('.onScreenMsgCHT').css('display','none')};
+	if(!CHAT.getLogMsgOn()){$('.onScreenMsgSYS').css('display','none')};
 	
-	setNameClicked:function(bool){
-	    this.nameClicked=bool;
-	},
+},
+
+
+clearLogbox:function(){
+	$('#logmsgbox').html('');	
+},
+clearChatbox:function(){
+	$('#chatbox').html('');	
+},
+
+showLog:function(){
+	this.clearLogbox();
+	this.clearChatbox();
+	this.display='shown';
+	this.allmessages.forEach(function(item,i){
+		$('#logmsgbox').append(item);
+	});
+	$('#logbox').css('display','block');
+	$('#logbox').scrollTop($('#logmsgbox').height());
 	
-	checkIsBig:function(){
-		return this.isBig;
-	},
+	if(!CHAT.getChtMsgOn()){$('.onScreenMsgCHT').css('display','none')};
+	if(!CHAT.getLogMsgOn()){$('.onScreenMsgSYS').css('display','none')};
+},
+
+hideLog:function(){
+	$('#logbox').css('display','none');
+	this.display='popping';
+},
+
+
+bindBtns:function(){
 	
-	setBig:function(bool){
-		this.isBig=bool;
-	},
+	$('#chatLook').mouseenter(function(){
+		if(CHAT.getDisplay()=='popping'){
+		CHAT.showLog()}
+	});
+	$('#chatLook').mouseleave(function(){
+		if(CHAT.getDisplay()=='shown'){
+			CHAT.hideLog();
+		};
+	});
+	
+	$('#chatLook').click(function(){
+
+		if(CHAT.getDisplay()=='shown'){
+			$('#chatLook').css('border','solid 3px #ff0000');
+			CHAT.setDisplay('fixed');
+			$('#logbox').css('overflow-y','scroll')}
+		else{
+			$('#chatLook').css('border','solid 1px #000000');
+			CHAT.setDisplay('shown');
+			$('#logbox').css('overflow-y','hidden')}
+	});
+	
+	
+	$('#chatFilter1').click(function(){
+		if(CHAT.getChtMsgOn()){CHAT.setChtMsgOn(false);$('#chatFilter1').css('border','solid 3px #ff0000');
+		$('.onScreenMsgCHT').css('display','none');
+		CHAT.push('system','chat messages are hidden')}
+		else{CHAT.setChtMsgOn(true);$('#chatFilter1').css('border','solid 1px #000000');
+		$('.onScreenMsgCHT').css('display','block');
+		CHAT.push('system','chat messages are shown')}
+	});
+	
+	$('#chatFilter2').click(function(){
+		if(CHAT.getLogMsgOn()){CHAT.setLogMsgOn(false);$('#chatFilter2').css('border','solid 3px #ff0000');
+		CHAT.push('system','system messages are hidden');
+		$('.onScreenMsgSYS').css('display','none')}
+		else{CHAT.setLogMsgOn(true);$('#chatFilter2').css('border','solid 1px #000000');
+		$('.onScreenMsgSYS').css('display','block');
+		CHAT.push('system','chat messages are shown')}
+	});
+
+},
+
 };
+
+
 
 
 /*
@@ -59,30 +156,4 @@ $('#chatinput').keypress(function(event){
 	if(event.which === 13) {
 		$('#chatbutton').click();
 	}
-});
-
-$('#chatbox').click(function(){
-    if(!CHAT.checkIfName()){	
-	    if(!CHAT.checkIsBig()){
-		    $('#chatbox').css('height','98vh');
-		    $('#chatbox').css('top','0');
-		    $('#chatbox').css('left','50vw');
-		    $('#chatbox').css('width','50vw');
-		    $('#chatbox').css('position','fixed');
-		    $('#chatbox').css('overflow-y','scroll');
-		    $('#chatbox').css('border-radius','0');
-		    CHAT.setBig(true);}
-	    else{
-		    $('#chatbox').css('height','20%');
-		    $('#chatbox').css('top','0');
-		    $('#chatbox').css('left','0');
-		    $('#chatbox').css('width','90%');
-		    $('#chatbox').css('position','relative');
-		    $('#chatbox').css('overflow-y','hidden');
-		    $('#chatbox').css('border-radius','10px 10px 0 0');
-		    CHAT.setBig(false);
-	    }
-        
-    }else{CHAT.setNameClicked(false)}	
-	
 });

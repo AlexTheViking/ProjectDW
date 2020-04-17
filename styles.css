@@ -2,6 +2,8 @@ body{
 	margin:0;
 	padding:0;
 	background-color:#cccccc;
+	background-image:url(pics/background.jpg);
+	background-size:100%;
 }
 #mapbox{
 	position:relative;
@@ -151,7 +153,7 @@ body{
 	border:none;
 	border-radius:7px;
 	background-color:#00000000;
-	background-image:url(pics/houseBlue.png);
+	background-image:url(pics/blueHouse.png);
 	background-size:100%;
 	color:#aaaa00;
 	transition-duration:0.5s;
@@ -210,18 +212,64 @@ body{
 
 #actionbox{
 	margin:0 auto;
-	width:95%;
+	width:100%;
 	height:70%;
 }
 
-#chatbox{
-	background-color:#ffffff;
-	border-radius:10px 10px 0 0;
-	margin:0 auto;
-	width:90%;
-	height:20%;
+#logbox{
+	position:fixed;
+	width:100%;
+	height:95%;
+	background-color:#ffffff55;
 	overflow-y:hidden;
+	display:none;
+
 }
+
+#chatbox{
+	position:fixed;
+	width:100%;
+	height:95%;
+	pointer-events:none;
+	background-color:#ffffff00;
+	overflow-y:hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	flex-wrap: nowrap;
+}
+.onScreenMsgSYS{
+	position:relative;
+	padding:5px;
+	width:90%;
+	height:5%;
+	color:#ffffff;
+	text-shadow: 2px 2px 3px #000000, 2px 2px 2px #000000, -2px -2px 3px #000000, -2px -2px 2px #000000;
+}
+.onScreenMsgCHT{
+	position:relative;
+	padding:5px;
+	width:90%;
+	height:5%;
+	color:#ffffff;
+	text-shadow: 2px 2px 3px #000000, 2px 2px 2px #000000, -2px -2px 3px #000000, -2px -2px 2px #000000;
+}
+.onScreenMsgImg{
+	position:relative;
+	display:inline-block;
+	height:100%;
+	
+}
+.onScreenMsgTxt{
+	padding:5px;
+	top:0;
+	position:absolute;
+	display:inline-block;
+	height:100%;
+
+}
+
+
 
 .chatmsg{
 	text-align:justify;
@@ -242,31 +290,56 @@ body{
 }
 
 #chatbar{
-	padding:0;
-	margin:0 auto;
-	width:90%;
-	height:6%;
+	opacity:0.5;
+	position:fixed;
+	top:95%;
+	width:100%;
+	height:5%;
+}
+#chatbar:hover{
+	opacity:1;
 }
 
 #chatinput{
 	display:inline;
-	border-radius:0 0 0 10px;
-	border:none;
+	border:solid 1px #000000;
+	border-radius:10px;
 	margin:0;
-	padding:0;
-	width:80%;
+	padding:0 10px;
+	width:86%;
 	height:100%;
 }
 
 #chatbutton{
+	position:absolute;
+	left:81%;
+	top:5%;
 	display:inline;
-	border-radius:0 0 10px 0;
 	border:none;
-	margin:0;
+	border-radius:10px;
+	margin:0 1%;
 	padding:0;
-	width:20%;
-	height:100%;	
+	width:3%;
+	height:90%;
+	background-color:#00000000;
+	background-image:url(pics/chatsend.png);
+	background-size:100% 100%;
 }
+
+.minChatBtn{
+	position:absolute;
+	border:solid 1px #000000;
+	display:inline;
+	border-radius:10px;
+	margin:0 1%;
+	padding:0;
+	width:3%;
+	height:100%;
+	background-color:#ffff;
+	background-size:100% 100%;
+}
+
+
 
 .inpt{
 	border: solid 2px #777777;
@@ -292,6 +365,23 @@ body{
 
 #logoutBtn:hover{
 	background-image:url('pics/logoutR.png');
+}
+
+#settingsBtn{
+	position:fixed;
+	top:.5vw;
+	width:2.5vw;
+	height:2.5vw;
+	left:94vw;
+	border:none;
+	background-color:#00000000;
+	background-image:url('pics/gear.png');
+	background-size:100%;
+	transition-duration:0.5s;
+}
+
+#settingsBtn:hover{
+    transform: rotate(360deg);
 }
 
 #fullScreenDialogue{

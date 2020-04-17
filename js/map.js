@@ -51,7 +51,7 @@ function District (id){
 	this.setBuilding=function(color){
 		if(color!=null){
 		this.building=color;
-		this.houseBtn.css('backgroundImage','url("pics/house'+color+'.png")');
+		this.houseBtn.css('backgroundImage','url("pics/'+color+'House.png")');
 		this.houseBtn.css('display','block');}
 		else(this.houseBtn.css('display','none'))
 		
@@ -150,7 +150,7 @@ MAP={
 	
 	distHover:function(id){
 		//console.log('hovered district # '+id);
-		$('#path'+id).attr('style','fill:#ffffff44;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1,0.5');
+		$('#path'+id).attr('style','fill:#ffffff44;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1,0.5');
 	},	
 	distLeft:function(id){
 		//console.log('district # '+id+' left');
