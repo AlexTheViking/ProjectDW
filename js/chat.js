@@ -6,15 +6,21 @@ display:'popping',
 
 logMsgOn:true,
 chtMsgOn:true,
+menuShown:false,
 
+getMenuShown:function(){return this.menuShown},
+setMenuShown:function(bool){this.menuShown=bool},
 getLogMsgOn:function(){return this.logMsgOn},
 setLogMsgOn:function(bool){this.logMsgOn=bool},
 getChtMsgOn:function(){return this.chtMsgOn},
 setChtMsgOn:function(bool){this.chtMsgOn=bool},
 
 allmessages:[],
+clearHistory:function(){this.allmessages=[]},
 
 lifetime:5,
+getLifetime:function(){return this.lifetime},
+setLifetime:function(lifetime){this.lifetime=lifetime},
 
 pattern:'<div class="onScreenMsg#TYPE"><img class="onScreenMsgImg" src="pics/#IMGSay.png"><div class="onScreenMsgTxt"> #TEXT </div></div>',
 
@@ -109,6 +115,37 @@ bindBtns:function(){
 		else{CHAT.setLogMsgOn(true);$('#chatFilter2').css('border','solid 1px #000000');
 		$('.onScreenMsgSYS').css('display','block');
 		CHAT.push('system','chat messages are shown')}
+	});
+	
+	$('#chatSettings').click(function(){
+		if(!CHAT.getMenuShown()){
+			$('#chatSettingsMenu').css('display','flex');
+			$('#chatSettings').css('border','solid 3px #ff0000');
+			CHAT.setMenuShown(true);
+			$('#chatLifetimeSeeker').attr('value',CHAT.getLifetime());
+			$('#chatLifetimeTxt').html(CHAT.getLifetime());
+			}
+		else{
+			$('#chatSettingsMenu').css('display','none');
+			$('#chatSettings').css('border','solid 1px #000000');
+			CHAT.setMenuShown(false)}	
+	});
+	
+	
+	
+	$('#chatSettingsMenuItemsContainer').mouseleave(function(){
+		$('#chatSettings').click();
+	});
+	
+	$('#chatLifetimeSeeker').change(function(){
+		CHAT.setLifetime($('#chatLifetimeSeeker').val());
+		$('#chatLifetimeTxt').html(CHAT.getLifetime());
+		CHAT.push('system','lifetime of popping messages now set as '+CHAT.getLifetime()+' sec.');
+	});
+	
+	$('#chatClearHistoryBtn').click(function(){
+		CHAT.clearHistory();
+		CHAT.push('system','chat and log history is cleared')
 	});
 
 },

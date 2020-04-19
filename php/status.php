@@ -1,5 +1,5 @@
 <?php
-	function return_status(int $status = 0, string $message = "OK")
+	function return_status($status = 0,$message = "OK")
 	{
 		echo json_encode(array("status" => $status, "message" => $message));
 	}

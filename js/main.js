@@ -11,11 +11,11 @@ $(function(){
 		CHAT.bindBtns();
 		
 //		Не удалять!! запрос к пхп!!!
-/*
-$.post('php/login_check.php',function(data){
+
+$.post('php/check_login.php',function(data){
 //sends post-request to find out weather user is loged in or not
 	console.log(data);
-	if(data==='False'){
+	if(data==='false'){
 		ACT.display('login');
 		//see actions.js
 		$('#logoutBtn').css('display','none');
@@ -24,7 +24,7 @@ $.post('php/login_check.php',function(data){
 		ACT.display('greetingsBox');
 	};
 });
-*/
+
 
 		MAP.getDistricts();
 		//creates jquery objects from districts images and saves them into MAP object

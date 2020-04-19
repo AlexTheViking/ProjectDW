@@ -1,12 +1,20 @@
 DLG={
-	showFS:function(msg,rebBtnTxt,greenBtnTxt,redBtnFn,greenBtnFn){
+	showFS:function(msg,greenBtnTxt,greenBtnFn,redBtnTxt,redBtnFn){
 
 		$('#fSDlgCaption').html(msg);
-		$('#fSDlgRedBtn').val(rebBtnTxt);
 		$('#fSDlgGreenBtn').val(greenBtnTxt);
-		
 		$('#fSDlgGreenBtn').click(greenBtnFn);
-		$('#fSDlgRedBtn').click(redBtnFn);
+		
+		if(typeof redBtnTxt!=='undefined'){
+				$('#fSDlgRedBtn').css('display','inline-block');
+				$('#fSDlgRedBtn').click(redBtnFn);
+				$('#fSDlgRedBtn').val(redBtnTxt);
+				$('#fSDlgGreenBtn').css('left','6.6%');
+				}
+		else{
+				$('#fSDlgRedBtn').css('display','none');
+				$('#fSDlgGreenBtn').css('left','27.5%');
+		}
 		$('#fullScreenDialogue').css('display','block');
 	},
 	
