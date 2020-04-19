@@ -11,7 +11,7 @@
 		mkdir($dir);
 	if ($f = fopen($filename, "c+b"))
 	{
-		flock($f, LOCK_SH);
+		//flock($f, LOCK_SH);
 		if (!($arr = unserialize(file_get_contents($filename))))
 			$arr = array();
 		if (array_key_exists($_POST["login"], $arr))
@@ -19,11 +19,11 @@
 		else
 		{
 			$arr[$_POST["login"]] = hash("whirlpool", $_POST["passwd"]);
-			flock($f, LOCK_EX);
+		//	flock($f, LOCK_EX);
 			file_put_contents($filename, serialize($arr));
 			return_status(0, "Account \"".$_POST["login"]."\" successfully created.");
 		}
-		flock($f, LOCK_UN);
+		//flock($f, LOCK_UN);
 		fclose($f);
 	}
 	else
