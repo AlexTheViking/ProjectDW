@@ -12,7 +12,8 @@
 	if ($f = fopen($filename, "c+b"))
 	{
 		flock($f, LOCK_SH);
-		$arr = unserialize(file_get_contents($filename));
+		if (!($arr = unserialize(file_get_contents($filename))))
+			$arr = array();
 		if (array_key_exists($_POST["login"], $arr))
 			return_status(1, "Account \"".$_POST["login"]."\" already exists.");
 		else
