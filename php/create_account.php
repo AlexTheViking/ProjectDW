@@ -1,25 +1,30 @@
 <?php
-	define("ACCOUNT_OCCUPIED", "Account already exists.\n");
-	if ($_POST["login"] === NULL && $_POST["login"] === "" && $_POST["passwd"] === NULL && $_POST["passwd"] === "" && $_POST["submit"] !== "OK")
+	require_once("status.php");
+	if (!isset($_POST["login"], $_POST["passwd"]) || $_POST["login"] === "" || $_POST["passwd"] === "")
 	{
-		echo "ERROR\n";
+		return_status(1, "Invalid login / password.");
 		exit;
 	}
 	$dir = "../private";
 	$filename = $dir."/passwd";
 	if (!file_exists($dir))
 		mkdir($dir);
-	if (file_exists($filename) && ($arr = file_get_contents($filename)))
+	if ($f = fopen($filename, "c+b"))
 	{
-		$arr = unserialize($arr);
+		flock($f, LOCK_SH);
+		$arr = unserialize(file_get_contents($filename));
 		if (array_key_exists($_POST["login"], $arr))
-			{
-				echo ACCOUNT_OCCUPIED;
-				exit;
-			}
+			return_status(1, "Account \"".$_POST["login"]."\" already exists.");
+		else
+		{
+			$arr[$_POST["login"]] = hash("whirlpool", $_POST["passwd"]);
+			flock($f, LOCK_EX);
+			file_put_contents($filename, serialize($arr));
+			return_status(0, "Account \"".$_POST["login"]."\" successfully created.");
+		}
+		flock($f, LOCK_UN);
+		fclose($f);
 	}
 	else
-		$arr = array();
-	$arr[$_POST["login"]] = hash("whirlpool", $_POST["passwd"]);
-	echo (file_put_contents($filename, serialize($arr)) ? "OK\n" : "ERROR\n");
+		return_status(1, "Server error: can't read data.");;
 ?>

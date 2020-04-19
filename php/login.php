@@ -1,4 +1,6 @@
 <?php
+	require_once("status.php");
+	
 	function auth($login, $passwd)
 	{
 		$filename = "../private/passwd";
@@ -8,14 +10,14 @@
 	}
 
 	session_start();
-	if ($_POST["login"] === NULL || $_POST["login"] === "" || $_POST["passwd"] === NULL || $_POST["passwd"] === "" || !auth($_POST["login"], $_POST["passwd"]))
+	if (isset($_POST["login"], $_POST["passwd"]) && !auth($_POST["login"], $_POST["passwd"]))
 	{
-		$_SESSION["user"] = NULL;
-		echo "ERROR\n";
+		$_SESSION["user"] = $_POST["login"];
+		return_status();
 	}
 	else
 	{
-		$_SESSION["user"] = $_POST["login"];
-		echo "OK\n";
+		$_SESSION["user"] = NULL;
+		return_status(1, "Incorrect login / password.");
 	}
 ?>
