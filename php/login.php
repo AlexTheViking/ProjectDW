@@ -10,7 +10,7 @@
 	}
 
 	session_start();
-	if (isset($_POST["login"], $_POST["passwd"]) && !auth($_POST["login"], $_POST["passwd"]))
+	if (isset($_POST["login"], $_POST["passwd"]) && auth($_POST["login"], $_POST["passwd"]))
 	{
 		$_SESSION["user"] = $_POST["login"];
 		return_status();
