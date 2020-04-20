@@ -35,10 +35,33 @@ DW
 			</div>
 		
 		<!--Greetings box-->
-			<div id=greetingsBox style='display:none;position:relative; width:98%;height:98%;'>
-				<p>Hey there, <span id='greetingsUsername'></span>!<br> Welcome to ProjectDW.</p>
-				<input id='JoinGameButton' class='inpt' type='button' value='Join game' style='width:49%; height:10%; position:absolute; top:70%; left:36%; background-color:#77cc77' >
+			<div id=greetingsBox style='display:none;padding:0;margin:0;position:relative; width:98%;height:98%;'>
+				<p style='width:100%; position:relative;top:10%;text-align:center;color:#ffffff;font-size:3vh;text-shadow: 2px 2px 3px #000000, 2px 2px 2px #000000, -2px -2px 3px #000000, -2px -2px 2px #000000;'>Hey there, <span id='greetingsUsername'></span>, welcome to ProjectDW!</p>
+				
+				<div style='position:absolute;background-color:#777777;border-radius:10px 10px 0 0; width:80%;height:5%;left:10%;top:25%;'></div>
+				
+				<div style='position:absolute;background-color:#cccccc;border:solid 1px #000000;width:calc(80% - 2px);height:5%;left:10%;top:30%;'>
+					<div class='lobbyInnerBlock' style='left:0;width:40%'>Creator</div>
+					<div class='lobbyInnerBlock' style='left:40%;width:20%'>Players</div>
+					<div class='lobbyInnerBlock' style='left:60%;width:20%'>Status</div>
+					<div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'></div>
+				</div>
+				
+				<div id=lobbyBox>
+<!--
+					<div style='position:relative;width:100%;margin:3px 0;height:10%;'>
+					<div class='lobbyInnerBlock' style='left:0;width:40%'>Creator</div>
+					<div class='lobbyInnerBlock' style='left:40%;width:20%'>Players</div>
+					<div class='lobbyInnerBlock' style='left:60%;width:20%'>Status</div>
+					<div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'><button class='inpt' style='height:100%;padding:0;width:100%; font-size:2vh'>JOIN</button></div>
+					</div>
+
+-->
+					
+				</div>
+				<input id='CreateGameButton' class='inpt' type='button' value='Create new game' style='width:40%; height:5%; position:absolute; color:#ffffff; border:none; border-radius:0 0 10px 10px; top:75%; left:50%; background-color:#777777' >
 			</div>
+			
 			
 	</div>
 
@@ -55,10 +78,20 @@ DW
 		<input type='button'  id='chatFilter1' class='minChatBtn' style='	background-image:url(pics/guestSay.png);	left:90%;' value=''>
 		<input type='button'  id='chatFilter2' class='minChatBtn' style='	background-image:url(pics/systemSayGr.png);	left:93%;' value=''>
 		<input type='button'  id='chatSettings' class='minChatBtn' style='	background-image:url(pics/gear.png);	left:96%;' value=''>
-		
 	</div>
+	
+	<div id=chatSettingsMenu>
+		<div id=chatSettingsMenuItemsContainer>
+			<div class=menuItem>
+				<input id='chatClearHistoryBtn' type=button class=inpt style='width:100%;font-size:2vh' value='Clear history'>
+			</div>	
+			<div class=menuItem>
+				Popping messages lifetime
+				<input id='chatLifetimeSeeker' style='width:100%' min="1" max="30" step="1" type='range'>
+			</div>
 
-
+		</div>
+	</div>
 
 	<!--Logout button, very independant by its temper-->
 	<input id='logoutBtn' type='button'>
@@ -86,6 +119,7 @@ DW
 <script src='js/actions.js'></script>
 <script src='js/chat.js'></script>
 <script src='js/dlgs.js'></script>
+<script src='js/lobby.js'></script>
 
 
 </html>

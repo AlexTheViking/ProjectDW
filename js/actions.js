@@ -33,17 +33,20 @@ $('#loginLogInButton').click(function(){
 		console.log('sending request...');
 		$.post('php/login.php',{login:$('#loginInput').val(),passwd:$('#passInput').val()},function(data){
 		d=JSON.parse(data);
-		if(d.status==0){ACT.display('greetingsBox')}else{DLG.showFS(d.message,'OK',function(){DLG.closeFS()})};
+		if(d.status==0){ACT.display('greetingsBox');$('#logoutBtn').css('display','block')}else{DLG.showFS(d.message,'OK',function(){DLG.closeFS()})};
 		});	
 		}else{$('#logInWorn').text('Please, fill all the fields.');$('#logInWorn').css('display','block')};
 	});
 
 $('#logoutBtn').click(function(){
 	DLG.showFS('Are you sure you want to log out?',
-	function(){
+	'No, wait a minute...',	function(){DLG.closeFS()},'Yes, log out now.',function(){
 		$.post('php/logout.php',function(data){
-		console.log(data);DLG.closeFS();
-	})},'Yes, log out now.','No, wait a minute...',
-		function(){DLG.closeFS()});
+		console.log(data);ACT.display('login');$('#logoutBtn').css('display','none');DLG.closeFS();
+	})});
 });
+	
+	
+	
+	
 	
