@@ -6,5 +6,10 @@
 		private $_name;
 
 		public function getName() { return $this->$_name; }
+
+		public function __construct($user)
+		{
+			$this->$_name = $user;
+		}
 	}
 ?>
