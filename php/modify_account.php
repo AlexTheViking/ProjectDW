@@ -6,14 +6,13 @@
 		return_status(1, "Invalid password.");
 	elseif ($f = fopen($filename, "c+b"))
 	{
-		flock($f, LOCK_SH);
+		flock($f, LOCK_EX);
 		$arr = unserialize(file_get_contents($filename));
 		if (!array_key_exists($_SESSION["user"], $arr) || $arr[$_SESSION["user"]] !== hash("whirlpool", $_POST["oldpw"]))
 			return_status(1, "Incorrect login / password.");
 		else
 		{
 			$arr[$_SESSION["user"]] = hash("whirlpool", $_POST["newpw"]);
-			flock($f, LOCK_EX);
 			file_put_contents($filename, serialize($arr));
 			return_status(0, "Password successfully changed.");
 		}

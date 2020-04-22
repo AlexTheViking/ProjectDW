@@ -17,7 +17,7 @@
 	}
 	else
 	{
-		$_SESSION["user"] = NULL;
+		unset($_SESSION["user"]);
 		return_status(1, "Incorrect login / password.");
 	}
 ?>
