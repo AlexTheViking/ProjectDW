@@ -32,7 +32,7 @@
 
 		public function addPlayer($user)
 		{
-			if ($this->getNumPlayers() < $this->getMaxPlayers())
+			if ($this->getNumPlayers() < GameConstants::MAX_PLAYERS)
 			{
 				$this->_players[] = $user;
 				if (++$this->_numPlayers === GameConstants::MAX_PLAYERS)
