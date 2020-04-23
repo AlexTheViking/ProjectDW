@@ -11,7 +11,7 @@
 			continue;
 		$game = unserialize(file_get_contents($dir.'/'.$val.'/state'));
 		if ($game->getStatus() === "open")
-			$arr[] = array("id" => $game->getId(), "maxPlayers" => $game->getMaxPlayers(), "players" => $game->getPlayersList());
+			$arr[] = array("id" => $game->getId(), "numPlayers" => $game->getNumPlayers(), "players" => $game->getPlayersList());
 	}
 	echo json_encode($arr);
 ?>
