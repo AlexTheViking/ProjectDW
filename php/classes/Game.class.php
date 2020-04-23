@@ -37,7 +37,7 @@
 		{
 			if ($this->getNumPlayers() < $this->getMaxPlayers())
 			{
-				$this->$_players[] = $user;
+				array_push($this->$_players, $user);
 				if (++$this->$_numPlayers === $this->$_maxPlayers)
 					$this->$_status = "ready";
 			}
