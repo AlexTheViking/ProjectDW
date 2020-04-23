@@ -1,4 +1,5 @@
 <?php
+	spl_autoload_register(function ($class_name) { include $class_name . '.class.php'; });
 	class Game
 	{
 		private $_id;
@@ -34,7 +35,7 @@
 		{
 			if ($this->getNumPlayers() < GameConstants::MAX_PLAYERS)
 			{
-				$this->_players[] = $user;
+				$this->_players[] = new Player($user);
 				if (++$this->_numPlayers === GameConstants::MAX_PLAYERS)
 					$this->_status = "full";
 				return true;
