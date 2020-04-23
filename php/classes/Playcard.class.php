@@ -5,12 +5,12 @@
 	{
 		private $_instructions;
 		
-		public function getInstructions() { return $this->$_instructions; }
+		public function getInstructions() { return $this->_instructions; }
 
 		public function __construct(array $args)
 		{
 			parent::__construct($args);
-			$this->$_type = "playcard";
+			$this->_type = "playcard";
 		}
 	}
 ?>

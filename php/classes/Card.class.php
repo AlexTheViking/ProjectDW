@@ -15,9 +15,9 @@
 
 		public function __construct(array $args)
 		{
-			$this->$_name = $args["name"];
-			$this->$_text = $args["text"];
-			$this->$_front = $args["front"];
+			$this->_name = $args["name"];
+			$this->_text = $args["text"];
+			$this->_front = $args["front"];
 		}
 	}
 ?>
