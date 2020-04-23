@@ -9,4 +9,5 @@
 	#flock($f, LOCK_EX);
 	file_put_contents($filename, serialize($game));
 	#flock($f, LOCK_UN);
+	echo array("status" => 0, "id" => $game->getId());
 ?>
