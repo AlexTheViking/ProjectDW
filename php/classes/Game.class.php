@@ -5,7 +5,7 @@
 		private $_status;
 		private $_maxPlayers;
 		private $_numPlayers;
-		private $_players = array();
+		private $_players;
 		private $_mainDeck;
 		private $_discardDeck;
 		private $_map;
@@ -28,7 +28,7 @@
 			date_default_timezone_set("Europe/Moscow");
 			$this->$_id = microtime()."-".$user;
 			$this->$_maxPlayers = $maxPlayers;
-			$this->$_players[] = new Player($user);
+			$this->$_players = array(new Player($user));
 			$this->$_numPlayers = 1;
 			$this->$_status = "open";
 		}
