@@ -1,0 +1,49 @@
+
+<div id='main'>
+<!-- Right part of screen with different activites and chat (blackjeck and whores) -->
+	
+	<div id='actionbox'>
+
+		<!--login-->	
+			<div id=login style='display:none;position:relative; width:100%;height:100%;'>
+				<div id='logInWorn' class=warnText style='display:none; width:50%;height:5%;left:20%;top:5%'></div>
+				<input id='loginInput' placeholder='Login' class='inpt' style='width:60%; height:10%; position:absolute; top:25%; left:20%' type='text'>
+				<input id='passInput' placeholder='Password' class='inpt' style='width:60%; height:10%; position:absolute; top:40%; left:20%' type='password'>
+				<input id='loginSingUpButton' class='inptB' type='button' value='Sign Up' style='width:29%; height:10%; position:absolute; top:55%; left:20%;' >
+				<input id='loginLogInButton' class='inptB' type='button' value='Log In' style='width:29%; height:10%; position:absolute; top:55%; left:51%;'>
+			</div>
+		
+		<!--Sign Up-->	
+			<div id=signUp style='display:none;position:relative; width:100%;height:100%;'>
+				<div id='singUpWorn' class=warnText style='width:50%; height:5%; left:20%; top:5%'></div>
+				<input id='signUpInput' placeholder='Login' class='inpt' style='width:60%; height:10%; position:absolute; top:25%; left:20%' type='text'>
+				<input id='sighUpPass' placeholder='Password' class='inpt' style='width:60%; height:10%; position:absolute; top:40%; left:20%' type='password'>
+				<input id='confirmPass' placeholder='Confirm password' class='inpt' style='width:60%; height:10%; position:absolute; top:55%; left:20%' type='password'>
+				<input id='signUpCancelButton' class='inptB' type='button' value='X' style='width:10%; height:10%; position:absolute; top:70%; left:20%;' >
+				<input id='signUpSignUpButton' class='inptB' type='button' value='Sign Up' style='width:49%; height:10%; position:absolute; top:70%; left:31%' >
+			</div>
+		
+		<!--Greetings box-->
+			<div id=greetingsBox style='display:none;padding:0;margin:0;position:relative; width:98%;height:98%;'>
+				<p class=greenText style='width:100%; position:relative;top:7%;text-align:center;'>Hey there, <span id='greetingsUsername'></span>, welcome to ProjectDW!</p>
+				
+			<!--	<div style='position:absolute;background-color:#777777;border-radius:10px 10px 0 0; width:80%;height:5%;left:10%;top:25%;'></div>
+			-->	
+				<div class=inpt style='position:absolute;width:calc(80% - 2px);height:5%;left:10%;top:25%;'>
+					<div class='lobbyInnerBlock' style='left:0;width:40%'>Creator</div>
+					<div class='lobbyInnerBlock' style='left:40%;width:20%'>Players</div>
+					<div class='lobbyInnerBlock' style='left:60%;width:20%'>Status</div>
+					<div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'></div>
+				</div>
+				
+				<div id=lobbyBox class=inpt></div>
+				<input id='leftLobbyBtn' class='inptB' type='button' value='&#9664' style='position:absolute;width:10%;font-weight:900; height:10%; top:78%; left:10%;' >
+				
+				<span id=lobbyPage class=greenText style='position:absolute;width:10%;height:10%;top:78%;left:25%'>1/1</span>
+				
+				<input id='rightLobbyBtn' class='inptB' type='button' value='&#9654' style='position:absolute;width:10%;font-weight:900; height:10%; top:78%; left:40%;' >
+				<input id='reloadLobbyBtn' class='inptB' type='button' value='&#128259' style='position:absolute;width:10%;font-weight:900; height:10%; top:78%; left:55%;' >
+				<input id='CreateGameButton' class='inptB' type='button' value='Create' style='position:absolute;width:20%; height:10%; top:78%; left:70%;' >
+			</div>
+			
+		

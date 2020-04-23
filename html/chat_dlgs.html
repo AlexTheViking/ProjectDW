@@ -1,0 +1,41 @@
+
+	<!--Chat-->
+	<div id='chatbox'></div>
+	
+	<div id='logbox'><div id='logmsgbox'></div></div>
+	
+	<div id='chatbar'>
+		<input id='chatinput' placeholder='type your message here' type='text'>
+		<input type='button'  id='chatbutton' value=''>
+		<input type='button'  id='chatLook' class='minChatBtn' style='	background-image:url(pics/eye.png);	left:87%;' value=''>
+		<input type='button'  id='chatFilter1' class='minChatBtn' style='	background-image:url(pics/guestSay.png);	left:90%;' value=''>
+		<input type='button'  id='chatFilter2' class='minChatBtn' style='	background-image:url(pics/systemSayGr.png);	left:93%;' value=''>
+		<input type='button'  id='chatSettings' class='minChatBtn' style='	background-image:url(pics/gear.png);	left:96%;' value=''>
+	</div>
+	
+	<div id=chatSettingsMenu>
+		<div id=chatSettingsMenuItemsContainer>
+			<div class=menuItem>
+				<input id='chatClearHistoryBtn' type=button class=inpt style='width:100%;font-size:2vh' value='Clear history'>
+			</div>	
+			<div class=menuItem>
+				Popping messages lifetime
+				<input id='chatLifetimeSeeker' style='width:100%' min="1" max="30" step="1" type='range'>
+			</div>
+
+		</div>
+	</div>
+
+	<!--Logout button, very independant by its temper-->
+	<input id='logoutBtn' type='button'>
+	<input id='settingsBtn' type='button'>
+
+
+	<!--Fullscreen dialog marking-->
+	<div id='fullScreenDialogue'>
+		<div id='fSDialogueFrame'>
+		<p id='fSDlgCaption'>message</p>
+		<input id='fSDlgRedBtn' class='fSDlgBtn' type='button' value='red button text' style='background-color:#cc7777; left:3.3%'>
+		<input id='fSDlgGreenBtn' class='fSDlgBtn' type='button' value='green button text' style='background-color:#77cc77; left:6.6%'>
+		</div>
+	</div>

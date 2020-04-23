@@ -17,7 +17,7 @@ $('#signUpSignUpButton').click(function(){
 	if($('#signUpInput').val()!=''&&$('#sighUpPass').val()!=''&& $('#confirmPass').val()!=''){
 		$('#singUpWorn').css('display','none');
 			if($('#sighUpPass').val()==$('#confirmPass').val()){
-
+					$('#greetingsUsername').html($('#signUpInput').val());
 					$.post('php/create_account.php',{login:$('#signUpInput').val(),passwd:$('#sighUpPass').val()},function(data){
 					d=JSON.parse(data);
 					if(d.status==0){DLG.showFS(d.message,'OK',function(){ACT.display('login');DLG.closeFS()})}

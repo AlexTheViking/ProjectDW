@@ -1,0 +1,25 @@
+#playDesk{
+	position:absolute;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	padding:0;
+	margin:0;
+	display:none;
+	background-color:#00ff0055;
+}
+.playerHand{
+	position:absolute;
+	background-color:#00000055;
+	width:50%;
+	height:20%;
+}
+.Card{
+	margin:0 -8% 0 0%;
+	padding:0;
+	width:25%;
+	height:100%;
+	display:inline-block;
+	background-color:#ff000044;
+}

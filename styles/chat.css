@@ -1,0 +1,132 @@
+#chatbar{
+	opacity:0.5;
+	position:fixed;
+	top:95%;
+	width:100%;
+	height:5%;
+}
+#chatbar:hover{
+	opacity:1;
+}
+
+#chatinput{
+	display:inline;
+	border:solid 1px #000000;
+	border-radius:10px;
+	margin:0;
+	padding:0 10px;
+	width:86%;
+	height:100%;
+}
+
+#chatbutton{
+	position:absolute;
+	left:81%;
+	top:5%;
+	display:inline;
+	border:none;
+	border-radius:10px;
+	margin:0 1%;
+	padding:0;
+	width:3%;
+	height:90%;
+	background-color:#00000000;
+	background-image:url(../pics/chatsend.png);
+	background-size:100% 100%;
+}
+
+#chatSettingsMenu{
+	padding:0;
+	margin:0;
+	position:fixed;
+	background-color:#00000000;
+	width:calc(20vw - 2px);
+	height:95vh;
+	left:80vw;
+	top:0;
+	display: none;
+	flex-direction: column;
+	justify-content: flex-end;
+	flex-wrap: nowrap;
+}
+#chatSettingsMenuItemsContainer{
+border:solid 1px #000000;	
+}
+#chatbox{
+	position:fixed;
+	width:100%;
+	height:95%;
+	pointer-events:none;
+	background-color:#ffffff00;
+	overflow-y:hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	flex-wrap: nowrap;
+}
+.onScreenMsgSYS{
+	position:relative;
+	padding:5px;
+	width:90%;
+	height:3%;
+	color:#ffffff;
+	text-shadow: 2px 2px 3px #000000, 2px 2px 2px #000000, -2px -2px 3px #000000, -2px -2px 2px #000000;
+}
+.onScreenMsgCHT{
+	position:relative;
+	padding:5px;
+	width:90%;
+	height:3%;
+	color:#ffffff;
+	text-shadow: 2px 2px 3px #000000, 2px 2px 2px #000000, -2px -2px 3px #000000, -2px -2px 2px #000000;
+}
+.onScreenMsgImg{
+	position:relative;
+	display:inline-block;
+	height:100%;
+	
+}
+.onScreenMsgTxt{
+	padding:5px;
+	top:0;
+	position:absolute;
+	display:inline-block;
+	height:100%;
+
+}
+.chatmsg{
+	text-align:justify;
+	color:#444444;
+	width:80%;
+	margin:0 auto;
+	padding: 0 5;
+}
+.chatmsg:hover{
+	color:#000000;
+}
+
+.chatchatname{
+	color:#000000;
+	border:none;
+	font-weight:900;
+	background-color:#00000000;
+}
+.minChatBtn{
+	position:absolute;
+	border:solid 1px #000000;
+	display:inline;
+	border-radius:10px;
+	margin:0 1%;
+	padding:0;
+	width:3%;
+	height:100%;
+	background-color:#ffff;
+	background-size:100% 100%;
+}
+
+.chatLeftMsg{
+	color:#cc0000;
+}
+.chatEnterMsg{
+	color:#00cc00;
+}

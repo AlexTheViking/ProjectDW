@@ -1,20 +1,3 @@
-<html>
-<head>
-<title>
-DW
-</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<!-- container for the map-->
-<div id=mapbox><img id='mapback' src='map/0.png'></div>
-
-
-<div id='main'>
-<!-- Right part of screen with different activites and chat (blackjeck and whores) -->
-	
-	<div id='actionbox'>
 		<!--login-->	
 			<div id=login style='display:none;position:relative; width:100%;height:100%;'>
 				<div id='logInWorn' style='display:none; width:50%;height:5%;color:#ffffff;background-color:#ff0000;left:20%;top:5%;padding:5%;position:absolute; font-size:2vh; text-align:center;'></div>
@@ -47,79 +30,11 @@ DW
 					<div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'></div>
 				</div>
 				
-				<div id=lobbyBox>
-<!--
-					<div style='position:relative;width:100%;margin:3px 0;height:10%;'>
-					<div class='lobbyInnerBlock' style='left:0;width:40%'>Creator</div>
-					<div class='lobbyInnerBlock' style='left:40%;width:20%'>Players</div>
-					<div class='lobbyInnerBlock' style='left:60%;width:20%'>Status</div>
-					<div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'><button class='inpt' style='height:100%;padding:0;width:100%; font-size:2vh'>JOIN</button></div>
-					</div>
-
--->
-					
-				</div>
+				<div id=lobbyBox></div>
 				<input id='CreateGameButton' class='inpt' type='button' value='Create new game' style='width:40%; height:5%; position:absolute; color:#ffffff; border:none; border-radius:0 0 10px 10px; top:75%; left:50%; background-color:#777777' >
 			</div>
 			
 			
 	</div>
 
-</div>
-
-	<!--Chat-->
-	<div id='chatbox'></div>
-	<div id='logbox'><div id='logmsgbox'></div></div>
-	
-	<div id='chatbar'>
-		<input id='chatinput' placeholder='type your message here' type='text'>
-		<input type='button'  id='chatbutton' value=''>
-		<input type='button'  id='chatLook' class='minChatBtn' style='	background-image:url(pics/eye.png);	left:87%;' value=''>
-		<input type='button'  id='chatFilter1' class='minChatBtn' style='	background-image:url(pics/guestSay.png);	left:90%;' value=''>
-		<input type='button'  id='chatFilter2' class='minChatBtn' style='	background-image:url(pics/systemSayGr.png);	left:93%;' value=''>
-		<input type='button'  id='chatSettings' class='minChatBtn' style='	background-image:url(pics/gear.png);	left:96%;' value=''>
-	</div>
-	
-	<div id=chatSettingsMenu>
-		<div id=chatSettingsMenuItemsContainer>
-			<div class=menuItem>
-				<input id='chatClearHistoryBtn' type=button class=inpt style='width:100%;font-size:2vh' value='Clear history'>
-			</div>	
-			<div class=menuItem>
-				Popping messages lifetime
-				<input id='chatLifetimeSeeker' style='width:100%' min="1" max="30" step="1" type='range'>
-			</div>
-
-		</div>
-	</div>
-
-	<!--Logout button, very independant by its temper-->
-	<input id='logoutBtn' type='button'>
-	<input id='settingsBtn' type='button'>
-
-
-	<!--Fullscreen dialog marking-->
-	<div id='fullScreenDialogue'>
-		<div id='fSDialogueFrame'>
-		<p id='fSDlgCaption'>message</p>
-		<input id='fSDlgRedBtn' class='fSDlgBtn' type='button' value='red button text' style='background-color:#cc7777; left:3.3%'>
-		<input id='fSDlgGreenBtn' class='fSDlgBtn' type='button' value='green button text' style='background-color:#77cc77; left:6.6%'>
-		</div>
-	</div>
-
-
-</body>
-
-
-<script src='js/jquery.min.js'></script>
-<script src='js/partsJoiner.js'></script>
-<script src='js/resizer.js'></script>
-<script src='js/map.js'></script>
-<script src='js/main.js'></script>
-<script src='js/actions.js'></script>
-<script src='js/chat.js'></script>
-<script src='js/dlgs.js'></script>
-<script src='js/lobby.js'></script>
-
-
-</html>
+						
