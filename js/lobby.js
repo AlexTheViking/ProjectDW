@@ -1,5 +1,5 @@
 LBB={
-	pattern:"<div style='position:relative;width:100%;margin:3px 0;height:10%;'><div class='lobbyInnerBlock' style='left:0;width:40%'>#CRTR</div><div class='lobbyInnerBlock' style='left:40%;width:20%'>#PLRS/4</div><div class='lobbyInnerBlock' style='left:60%;width:20%'>#STATUS</div><div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'><button onclick='LBB.openLobby(#ID)' class='inptB' style='height:100%;padding:0;width:100%; font-size:2vh'>JOIN</button></div></div>",
+	pattern:"<div style='position:relative;width:100%;margin:3px 0;height:10%;'><div class='lobbyInnerBlock' style='left:0;width:40%'>#CRTR</div><div class='lobbyInnerBlock' style='left:40%;width:20%'>#PLRS/4</div><div class='lobbyInnerBlock' style='left:60%;width:20%'>#STATUS</div><div class='lobbyInnerBlock' style='left:80%;width:calc(20% - 4px)'><button onclick='LBB.openLobby(\"#ID\")' class='inptB' style='height:100%;padding:0;width:100%; font-size:2vh'>JOIN</button></div></div>",
 
 	lobbies:[],
 	page:0,
@@ -17,14 +17,25 @@ LBB={
 	return i;
 	},
 	
-	openLobby:function(id){
-		console.log(id);
+	openLobby:function(id1){
+		console.log(id1);
+		$.post('php/join_game.php',{id:id1},function(data){console.log(data)});
 	},
 	
 	createLobby:function(id,master,prls,stat){
 		this.lobbies.push([id,master,prls,stat]);
-		console.log(this.getPages());
 		},
+		
+	getLobbies:function(){
+		$.post('php/game_list.php',function(data){
+			console.log(data);
+			console.log(JSON.parse(data));
+			JSON.parse(data).forEach(function(item,i){
+				LBB.createLobby(item.id,item.players[0],item.players.length,'waiting');
+			});
+		LBB.showLobbies(0);	
+		})
+	},
 		
 	showLobbies:function(page){
 		
@@ -52,6 +63,8 @@ LBB={
 			console.log('few');
 			$.post('php/new_game.php',{maxPlayers:'4'},function(data){console.log(data)})
 		});
+		
+		$('#reloadLobbyBtn').click(function(){LBB.getLobbies()});
 	},
 
 		
