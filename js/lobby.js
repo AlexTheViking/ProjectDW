@@ -27,6 +27,7 @@ LBB={
 		},
 		
 	getLobbies:function(){
+		this.lobbies=[];
 		$.post('php/game_list.php',function(data){
 			console.log(data);
 			console.log(JSON.parse(data));

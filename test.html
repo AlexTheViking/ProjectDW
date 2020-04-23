@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>
+TESTPAGE
+</title>
+</head>
+<body>
+<br><br><br><br>
+<input id=path type='text' placeholder='путь к скрипту'><br><br><br>
+<input id=name type='text' placeholder='параметр'>
+<input id=value type='text' placeholder='значение'>
+<input id=add type='button' value='добавить'><br><br><br><br>
+<input id=send type='button' value='отправить'><input id=send2 type='button' value='без параметров'><br><br><br><br>
+
+
+
+<p>параметры</p>
+<p id=prms></p>
+
+<br>
+<br>
+<input id=clr type='button' value=clear>
+<p>ответ</p>
+<p id=answ></p>
+
+<script src='js/jquery.min.js'></script>
+<script>
+	params={};
+	$('#add').click(function(){
+		params[$('#name').val()]=$('#value').val();
+		$('#prms').html(JSON.stringify(params));
+	});
+	
+	$('#send').click(function(){
+		$.post($('#path').val(),params,function(data){
+				
+				$('#answ').html(data)
+				
+		})
+	});
+	
+		$('#send2').click(function(){
+		$.post($('#path').val(),function(data){
+				
+				$('#answ').html(data)
+				
+		})
+	});
+	
+	$('#clr').click(function(){
+		params={};
+		$('#prms').html(JSON.stringify(params));
+		});
+
+		</script>
+
+</body>
+</html>
