@@ -1,7 +1,7 @@
 <?php
 	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name . '.class.php'; });
 	session_start();
-	$game = new Game($_SESSION["user"], $_POST["maxPlayers"]);
+	$game = new Game($_SESSION["user"]);
 	$dir = "../private/games/".$game->getId();
 	mkdir($dir, 0777, true);
 	$filename = $dir."/state";
