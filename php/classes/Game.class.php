@@ -9,6 +9,7 @@
 		private $_mainDeck;
 		private $_discardDeck;
 		private $_map;
+		private $_chat;
 
 		public function getId() { return $this->_id; }
 		public function getStatus() { return $this->_status; }
@@ -29,6 +30,7 @@
 			$this->_players = array(new Player($user));
 			$this->_numPlayers = 1;
 			$this->_status = "open";
+			$this->_chat = new Chat($this->_id, $user);
 		}
 
 		public function addPlayer($user)

@@ -4,7 +4,7 @@
 	$dir = "../private/games/".$_POST["id"];
 	$filename = $dir."/state";
 	$f = fopen($filename, "c+b");
-	#flock($f, LOCK_EX);
+	flock($f, LOCK_EX);
 	$game = unserialize(file_get_contents($filename));
 	$game->delPlayer($_SESSION["user"]);
 	if ($game->getNumPlayers() === 0)
@@ -15,5 +15,6 @@
 	}
 	else
 		file_put_contents($filename, serialize($game));
-	#flock($f, LOCK_UN);
+	unset($_SESSION["id"]);
+	flock($f, LOCK_UN);
 ?>
