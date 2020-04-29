@@ -1,5 +1,5 @@
 <?php
-	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name . '.class.php'; });
+	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name.'.class.php'; });
 	session_start();
 	$dir = "../private/games/".$_POST["id"];
 	$filename = $dir."/state";
@@ -15,6 +15,8 @@
 	}
 	else
 		file_put_contents($filename, serialize($game));
-	unset($_SESSION["id"]);
 	flock($f, LOCK_UN);
+	unset($_SESSION["id"]);
+	unset($_SESSION["gamestate"]);
+	unset($_SESSION["chatstate"]);
 ?>

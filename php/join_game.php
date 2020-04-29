@@ -1,6 +1,6 @@
 <?php
 	require_once("status.php");
-	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name . '.class.php'; });
+	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name.'.class.php'; });
 	session_start();
 	$filename = "../private/games/".$_POST["id"]."/state";
 	$f = fopen($filename, "c+b");
@@ -10,6 +10,8 @@
 	{
 		file_put_contents($filename, serialize($game));
 		$_SESSION["id"] = $game->getId();
+		$_SESSION["gamestate"] = $game->getCounter();
+		$_SESSION["chatstate"] = $game->getChatCounter();
 		return_status();
 	}
 	else
