@@ -5,9 +5,11 @@
 		private $_filename;
 		private $_counter;
 
+		public function getCounter() { return $this->_counter; }
+
 		public function __construct($id, $user)
 		{
-			$this->_filename = "../../private/games/".$id."/chat";
+			$this->_filename = realpath("../../private/games/".$id."/chat");
 			$this->_counter = 0;
 			$this->speak("System", $user." создает игру.");
 		}
