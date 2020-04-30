@@ -10,8 +10,9 @@
 		$game = unserialize(file_get_contents($filename));
 		$game->getChat()->speak($_SESSION["user"], $_POST["message"]);
 		flock($f, LOCK_UN);
+		fclose($f);
 		return_status();
 	}
 	else
-		return_status(1, "Can't identify the game.");
+		return_status(1, "Speak error");
 ?>
