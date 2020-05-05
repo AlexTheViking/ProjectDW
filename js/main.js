@@ -1,7 +1,10 @@
 
 $(function(){
 //main function that starts as soon as DOM of index.html is ready
+	
+	DESK.getCards();
 
+	
 	$('#preloader').css('display','none');
 
 	//get parts and appends them to their places then lets script go further
@@ -34,6 +37,17 @@ $.post('php/check_login.php',function(data){
 		MAP.bindButtons();
 		//assigns buttons with districts
 
+		
+		//TEMPORARY CODE--------------------------------------------------------------------------------
+		//
+		//
+		
+		//		setTimeout(function(){ACT.display('playDesk')},2000);
+
+		//
+		//
+		//----------------------------------------------------------------------------------------------
+		
 });
 
 $(window).resize(function(){

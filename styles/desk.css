@@ -7,19 +7,41 @@
 	padding:0;
 	margin:0;
 	display:none;
-	background-color:#00ff0055;
+	/*background-color:#00ff0055;*/
 }
 .playerHand{
 	position:absolute;
-	background-color:#00000055;
-	width:50%;
+	/*background-color:#00000055;*/
+	width:45%;
 	height:20%;
+	display:flex;
+	justify-content:space-around;
+	align-content:center;
+	align-items:center;
 }
 .Card{
-	margin:0 -8% 0 0%;
-	padding:0;
-	width:25%;
+	flex:0 0 content;
 	height:100%;
-	display:inline-block;
-	background-color:#ff000044;
+	margin:-25%;
+	/*width:30%;*/
+	background-color:#ff000000;
+	background-image:url(../cards/playing/back.jpeg);
+	background-size:100% 100%;
+	border-radius:10%;
+	box-shadow:  -.3vh -.3vh 5px #000000ff, inset .3vh  .3vh 1px #ffffff99;
+	/*transition-duration:0.5s;*/
+
+	
+}
+.Card:hover{
+z-index:5000;
+
+}
+
+#lobbyWaiting{
+	position:absolute;
+	width:50%;
+	height:50%;
+	top:25%;
+	left:25%;
 }

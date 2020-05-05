@@ -20,8 +20,8 @@ Resizer={
 			rate=this.getScreenWidth()/this.getScreenHeight()
 			//console.log(rate);
 			if(rate<1&&this.mode!='mobile'){this.setMode('mobile');console.log('auto set "mobile" mode')};
-			if(rate>1&&rate<1.5&&this.mode!='percent'){this.setMode('percent');console.log('auto set "percent" mode')};
-			if(rate>1.5&&this.mode!='allheight'){this.setMode('allheight');console.log('auto set "allheight" mode')};
+			if(rate>1&&rate<1.7&&this.mode!='percent'){this.setMode('percent');console.log('auto set "percent" mode')};
+			if(rate>1.7&&this.mode!='allheight'){this.setMode('allheight');console.log('auto set "allheight" mode')};
 			
 			
 			};
