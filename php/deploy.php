@@ -38,9 +38,10 @@ function load_districts($pdo)
 
 try
 {
-	$conn = new PDO('mysql:host=' . SERVER_NAME . ';dbname=' . DB_NAME . ';charset=utf8mb4', USER_NAME, PASSWORD);
+	$conn = new PDO('mysql:host=' . SERVER_NAME . ';charset=utf8mb4', USER_NAME, PASSWORD);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->exec('CREATE DATABASE IF NOT EXISTS ' . DB_NAME);
+	$conn->exec('USE ' . DB_NAME);
 	echo 'Database OK' . PHP_EOL;
 	$conn->exec('CREATE TABLE IF NOT EXISTS accounts (login VARCHAR(40) UNIQUE NOT NULL, password CHAR(128) NOT NULL, PRIMARY KEY (login))');
 	echo "Accounts OK" . PHP_EOL;
