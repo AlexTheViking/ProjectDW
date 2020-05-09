@@ -3,7 +3,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/php/constants.php');
 try
 {
 	session_start();
-	if (!isset($_POST['login'], $_POST['passwd']))
+	if (!isset($_POST['login'], $_POST['passwd']) || $_POST['login'] === 'System')
 		throw new Exception("Invalid login / password.");
 	$conn = new PDO('mysql:host=' . SERVER_NAME . ';dbname=' . DB_NAME . ';charset=utf8mb4', USER_NAME, PASSWORD);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

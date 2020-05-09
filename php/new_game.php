@@ -1,17 +1,34 @@
 <?php
-	require_once("status.php");
-	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name . '.class.php'; });
+include($_SERVER['DOCUMENT_ROOT'] . '/php/constants.php');
+function new_game($user)
+{
+	$conn = new PDO('mysql:host=' . SERVER_NAME . ';dbname=' . DB_NAME . ';charset=utf8mb4', USER_NAME, PASSWORD);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$conn->exec('INSERT INTO games () VALUES ()');
+	$id = $conn->query('SELECT LAST_INSERT_ID()')->fetchColumn();
+	$conn->prepare('UPDATE accounts SET game_id = ? WHERE login = ?')->execute([$id, $user]);
+	$conn->exec('CREATE TABLE chat_' . $id . ' (id INT PRIMARY KEY AUTO_INCREMENT, 
+		time TIMESTAMP DEFAULT NOW(),
+		author VARCHAR(40) NOT NULL,
+		message TINYTEXT NOT NULL)');
+	$conn->exec('INSERT INTO chat_' . $id . ' (author, message) VALUES ("System", "' . $user . ' создает игру.")');
+	return $id;
+}
+
+try
+{
 	session_start();
-	$game = new Game($_SESSION["user"]);
-	$_SESSION["id"] = $game->getId();
-	$_SESSION["gamestate"] = $game->getCounter();
-	$_SESSION["chatstate"] = $game->getChatCounter();
-	$dir = "../private/games/".$game->getId();
-	mkdir($dir, 0777, true);
-	$filename = $dir."/state";
-	$f = fopen($filename, "c+b");
-	flock($f, LOCK_EX);
-	file_put_contents($filename, serialize($game));
-	flock($f, LOCK_UN);
-	return_status();
+	if (!isset($_SESSION['user']))
+		throw new Exception('User not logged in.');
+	if (isset($_SESSION['id']))
+		throw new Exception($_SESSION['user'] . ' is already playing (game ' . $_SESSION['id'] . '.');
+	$_SESSION["id"] = new_game($_SESSION["user"]);
+	$_SESSION["gamestate"] = 0;
+	$_SESSION["chatstate"] = 0;
+	echo json_encode(array('status' => 0, 'message' => "Game successfully created."));
+}
+catch(Exception $e)
+{
+	echo json_encode(array('status' => 1, 'message' => $e->getMessage()));
+}
 ?>

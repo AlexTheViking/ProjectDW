@@ -9,6 +9,8 @@
 
 		public function __construct($id, $user)
 		{
+			$f = fopen("../../private/games/".$id."/chat", "w");
+			fclose($f);
 			$this->_filename = realpath("../../private/games/".$id."/chat");
 			$this->_counter = 0;
 			$this->speak("System", $user." создает игру.");

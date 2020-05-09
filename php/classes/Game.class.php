@@ -37,11 +37,18 @@
 		{
 			date_default_timezone_set("Europe/Moscow");
 			$this->_id = str_replace('.', '', str_replace(' ', '-', microtime()."-".$user));
+			$dir = "../private/games/".$this->_id;
+			mkdir($dir, 0777, true);
 			$this->_players = array(new Player($user));
 			$this->_numPlayers = 1;
 			$this->_status = "open";
 			$this->_counter = 0;
 			$this->_chat = new Chat($this->_id, $user);
+			$filename = $dir."/state";
+			$f = fopen($filename, "c+b");
+			flock($f, LOCK_EX);
+			file_put_contents($filename, serialize($game));
+			flock($f, LOCK_UN);
 		}
 
 		public function addPlayer($user)

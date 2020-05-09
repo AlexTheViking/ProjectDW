@@ -1,29 +1,24 @@
 <?php
-	require_once("status.php");
-	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name.'.class.php'; });
+include($_SERVER['DOCUMENT_ROOT'] . '/php/constants.php');
+try
+{
 	session_start();
-	if (isset($_SESSION["id"]))
-	{
-		$arr = array("chatstate" => "uptodate", "gamestate" => "uptodate");
-		$filename = "../private/games/".$_SESSION["id"]."/state";
-		$f = fopen($filename, "c+b");
-		flock($f, LOCK_SH);
-		$game = unserialize(file_get_contents($filename));
-		if ($game->getChatCounter() > $_SESSION["chatstate"])
-		{
-			$arr["chatstate"] = "updating";
-			$arr["chat"] = $game->getChat($_SESSION["chatstate"]);
-			$_SESSION["chatstate"] = $game->getChatCounter();
-		}
-		if ($game->getCounter() > $_SESSION["gamestate"])
-		{
-			$arr["gamestate"] = "updating";
-			//$arr["game"] = $game->getState($_SESSION["user"]);
-			$_SESSION["gamestate"] = $game->getCounter();
-		}
-		flock($f, LOCK_UN);
-		echo json_encode($arr);
-	}
-	else
-		return_status(1, "Game state not received.")
+	if (!isset($_SESSION['user']))
+		throw new Exception('User not logged in.');
+	if (!isset($_SESSION['id']))
+		throw new Exception($_SESSION['user'] . ' is not playing any game.');
+	$conn = new PDO('mysql:host=' . SERVER_NAME . ';dbname=' . DB_NAME . ';charset=utf8mb4', USER_NAME, PASSWORD);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$stmt = $conn->prepare('SELECT * FROM chat_' . $_SESSION['id'] . ' WHERE id > ?');
+	$stmt->exec([$_SESSION['chatstate']]);
+	$arr = $stmt->fetchAll();
+	if ($arr)
+		$_SESSION['chatstate'] = $arr.end()['id'];
+	echo json_encode($arr);
+}
+catch(Exception $e)
+{
+	echo json_encode(array('status' => 1, 'message' => $e->getMessage()));
+}
 ?>

@@ -1,18 +1,22 @@
 <?php
-	require_once("status.php");
-	spl_autoload_register(function ($class_name) { include 'classes/'.$class_name.'.class.php'; });
+include($_SERVER['DOCUMENT_ROOT'] . '/php/constants.php');
+try
+{
 	session_start();
-	if (isset($_SESSION["user"]) && isset($_SESSION["id"]) && isset($_POST["message"]))
-	{
-		$filename = "../private/games/".$_SESSION["id"]."/state";
-		$f = fopen($filename, "c+b");
-		flock($f, LOCK_SH);
-		$game = unserialize(file_get_contents($filename));
-		$game->getChat()->speak($_SESSION["user"], $_POST["message"]);
-		flock($f, LOCK_UN);
-		fclose($f);
-		return_status();
-	}
-	else
-		return_status(1, "Speak error");
+	if (!isset($_SESSION['user']))
+		throw new Exception('User not logged in.');
+	if (!isset($_SESSION['id']))
+		throw new Exception($_SESSION['user'] . ' is not playing any game.');
+	if (!isset($_POST['message']))
+		throw new Exception("No message sent.");
+	$conn = new PDO('mysql:host=' . SERVER_NAME . ';dbname=' . DB_NAME . ';charset=utf8mb4', USER_NAME, PASSWORD);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$conn->prepare('INSERT INTO chat_' . $_SESSION['id'] . ' (author, message) VALUES (?, ?)');
+	$stmt->exec([$_SESSION['user'], $_POST['message']]);
+	echo json_encode(array('status' => 0, 'message' => "OK."));
+}
+catch(Exception $e)
+{
+	echo json_encode(array('status' => 1, 'message' => $e->getMessage()));
+}
 ?>
